@@ -49,13 +49,13 @@ const userSchema = new Schema(
 
     profileImage: {
       type: String,
-      default: '', // stores the image path e.g. /uploads/profile-123.jpg
+      default: '', 
     },
 
     role: {
       type: String,
-      enum: ['member', 'admin'], // only these two values are allowed
-      default: 'member',         // every new signup becomes a member by default
+      enum: ['member', 'admin'], 
+      default: 'member',         
     },
 
     isApproved: {
@@ -69,14 +69,12 @@ const userSchema = new Schema(
     },
   },
   {
-    timestamps: true, // automatically adds createdAt and updatedAt fields
+    timestamps: true,
   }
 )
 
-// ─────────────────────────────────────────────────────────
-// MIDDLEWARE: Hash password before saving to database
-// This runs automatically every time you call user.save()
-// ─────────────────────────────────────────────────────────
+
+
 userSchema.pre('save', async function (next) {
   // Only hash if password was changed or is new
   // Without this check, the password would be re-hashed on every profile update
